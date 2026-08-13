@@ -135,6 +135,6 @@ The workflow runs linting, formatting validation, type checking, and Jest API te
 
 Add the ReqRes key as a GitHub Actions repository secret named `REQRES_API_KEY`. Because workflows triggered by Dependabot cannot access regular Actions secrets, add the same key as a Dependabot repository secret with the same name so its pull requests can run the API tests.
 
-Dependabot checks npm packages and GitHub Actions twice a year and opens grouped pull requests for minor and patch updates. Major updates remain separate so breaking changes can be reviewed carefully.
+Dependabot checks npm packages and GitHub Actions twice a year and opens grouped pull requests for minor and patch updates. Major updates remain separate so breaking changes can be reviewed carefully. TypeScript major updates are held until `ts-jest` supports them, and `@types/node` remains on the same major version as the Node.js runtime.
 
 Public example credentials can remain in the workflow, but API keys and credentials for real systems must always use repository secrets.
