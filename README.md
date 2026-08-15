@@ -1,4 +1,8 @@
-# Supertest API with Jest - TypeScript Reference
+# Supertest API with Jest — TypeScript Reference
+
+[![CI](https://github.com/lucas-porto1/supertest-api-jest-ts/actions/workflows/api-tests.yml/badge.svg?branch=main)](https://github.com/lucas-porto1/supertest-api-jest-ts/actions/workflows/api-tests.yml)
+
+_Part of [Lucas Porto's QA Automation Reference Collection](https://github.com/lucas-porto1): QA-first templates built for readability, reproducibility, and sustainable maintenance._
 
 A TypeScript reference architecture for API test automation with Supertest, Jest, Joi, reusable endpoint modules, response contract validation, static type checking, coverage, and CI execution.
 
