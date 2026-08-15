@@ -133,11 +133,21 @@ Choose the simplest strategy that matches the payload and scenario instead of fo
 
 `npm run test:coverage` instruments the project source and writes HTML and LCOV reports under `coverage/`. The folder is ignored by Git. No arbitrary coverage threshold is enforced in the template; teams should define one after understanding the risk and test strategy of the real project.
 
-## CI configuration
+## Reports
 
-The workflow runs linting, formatting validation, type checking, and Jest API tests on pushes and pull requests. ESLint rejects committed focused tests such as `test.only`, while intentional skipped tests remain allowed.
+Every Jest execution generates a self-contained test report at `reports/index.html`. This is separate from code coverage: the test report shows scenario results, while `coverage/index.html` shows which project code was exercised. The latest test report from `main` is available at [lucas-porto1.github.io/supertest-api-jest-ts](https://lucas-porto1.github.io/supertest-api-jest-ts/).
+
+## CI behavior
+
+The workflow runs linting, formatting validation, type checking, and Jest API tests on pushes and pull requests. ESLint rejects committed focused tests such as `test.only`, while intentional skipped tests remain allowed. Runs on `main` publish the HTML test report to GitHub Pages and add its direct URL to the job summary. Pull requests do not replace the published report; a failed run retains its HTML report as a short-lived artifact for diagnosis.
+
+Before the first deployment, select **GitHub Actions** as the Pages source under the repository's **Settings > Pages**.
 
 Add the ReqRes key as a GitHub Actions repository secret named `REQRES_API_KEY`. Because workflows triggered by Dependabot cannot access regular Actions secrets, add the same key as a Dependabot repository secret with the same name so its pull requests can run the API tests.
+
+Reports can contain request and response data. Disable public Pages publishing or use access-controlled reporting infrastructure before reusing this setup with sensitive client systems.
+
+## Dependency maintenance
 
 Dependabot checks npm packages and GitHub Actions twice a year and opens grouped pull requests for minor and patch updates. Major updates remain separate so breaking changes can be reviewed carefully. TypeScript major updates are held until `ts-jest` supports them, and `@types/node` remains on the same major version as the Node.js runtime.
 

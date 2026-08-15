@@ -9,6 +9,19 @@ const config = {
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
   },
+  reporters: [
+    'default',
+    [
+      'jest-html-reporters',
+      {
+        filename: 'index.html',
+        inlineSource: true,
+        openReport: false,
+        pageTitle: 'Supertest API Test Report',
+        publicPath: './reports',
+      },
+    ],
+  ],
   restoreMocks: true,
   testEnvironment: 'node',
   testMatch: ['<rootDir>/tests/**/*.spec.ts'],
